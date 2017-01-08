@@ -8,11 +8,39 @@ const style = {
 };
 
 const LL = () => (
-  <div style={style}>
-    <Liquid
-    responsive
-  />
-  </div>
+  <span>
+    <div style={style}>
+      <Liquid
+        responsive
+        dryStyle={{
+          fill: 'red',
+          stroke: 'pink',
+        }}
+        wetStyle={{
+          fill: 'white',
+          stroke: 'red',
+        }}
+        legend="Percentage of Completed Tasks"
+        value={(Math.random() * 50) + 45}
+      />
+    </div>
+    <div style={style}>
+      <Liquid
+        responsive
+        dryStyle={{
+          fill: 'red',
+          stroke: 'pink',
+        }}
+        wetStyle={{
+          fill: 'white',
+          stroke: 'red',
+        }}
+        legend="Percentage of Completed Tasks"
+        value={Math.random() * 75}
+      />
+    </div>
+  </span>
+
 
 );
 

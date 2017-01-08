@@ -66,9 +66,6 @@ export default class Chart extends Component {
       height: this.state.height,
     };
 
-    // clone the children and pass in the props and state
-    const cloneChildrenWithProps = cloneComponents(this.props, obj);
-
     // make the chart take up the whole width and height of the parent if its responsive
     let style;
     if (this.props.responsive) {
@@ -96,7 +93,7 @@ export default class Chart extends Component {
           }
         >
           <svg width="100%" height="100%">
-            {cloneChildrenWithProps}
+            {cloneComponents(this.props, obj)}
           </svg>
         </ReactIf>
       </div>

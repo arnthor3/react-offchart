@@ -13,8 +13,9 @@ import * as dh from '../../Helpers/Liquid/dimensions';
 export default class Liquid extends Component {
   static propTypes = LiquidProps;
   static defaultProps = {
-    animationTime: 2000,
-    animationEase: 'easeCubicInOut',
+    // animationTime: 2000,
+    // animationEase: 'easeCubicInOut',
+    amplitude: 1,
   }
   constructor(props) {
     super();
@@ -25,7 +26,7 @@ export default class Liquid extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.renderChart();
   }
 
@@ -33,12 +34,50 @@ export default class Liquid extends Component {
     this.renderChart();
   }
 
+  getEasing() {
+    const animationEase = ease[this.props.ease];
+
+    if (animationEase === 'function') {
+      return animationEase;
+    }
+
+    return ease[ch.EASE];
+  }
+
+  getAnimationTime() {
+    const animationTime = this.props.animationTime;
+
+    if (animationTime === undefined) {
+      return 2000;
+    }
+
+    return animationTime;
+  }
+
   animate() {
     const el = select(this.container);
+
+    const animationEase = this.getEasing();
+
+    const animationTime = this.getAnimationTime();
+
+    const waveScale = dh.getWaveScaleLimit();
   }
 
   draw() {
+    const arr = new Array(ch.SAMPLING);
+    console.log(this.container);
+    const chart = select(this.container);
+    const el = chart.select('clipPath').select('path');
 
+    const textValue = chart.selectAll(`.${ch.TEXT_VALUE}`);
+    const decimalValue = chart.selectAll(`.${ch.TEXT_DECIMAL}`);
+    const percentageValue = chart.selectAll(`.${ch.TEXT_PERCENTAGE}`);
+    decimalValue.text('.3');
+    percentageValue.text('%');
+    console.log(textValue.empty());
+    textValue.text(parseInt(this.props.value));
+    el.attr('d', dh.getWave(this.props)(arr));
   }
 
   renderChart() {
@@ -53,10 +92,30 @@ export default class Liquid extends Component {
   }
 
   render() {
-    const { cx, cy, radius } = dh.getDimensions(this.props);
+    const d = dh.getDimensions(this.props);
     return (
-      <g ref={(c) => { this.contianer = c; }}>
-        {cloneChildren(this.props)}
+      <g>
+
+      <g
+        ref={(c) => { this.container = c; }}
+        transform={`translate(${d.cx},${d.cy})`}
+      >
+        {cloneChildren(this.props, d)}
+      </g>
+      <line
+          x1={d.cx}
+          x2={d.cx}
+          y1={0}
+          y2={this.props.height}
+          stroke="red"
+        />
+      <line
+          x1={0}
+          x2={this.props.width}
+          y1={d.cy}
+          y2={d.cy}
+          stroke="red"
+        />
       </g>);
   }
 }

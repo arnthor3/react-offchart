@@ -1,9 +1,9 @@
 import React from 'react';
 import { CLIP } from '../../Constants/liquid';
 
-export default () => (
+export default ({ clipId }) => (
   <defs>
-    <clipPath id={CLIP}>
+    <clipPath id={clipId}>
       <path />
     </clipPath>
   </defs>

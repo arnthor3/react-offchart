@@ -1,52 +1,35 @@
 import React, { PropTypes } from 'react';
 import * as ch from '../../Constants/liquid';
+import { LiquidTextProps } from '../../Props/liquidProps';
 
 const LiquidText = (props) => (
-  <g className={ch.TEXT}>
-    <g className="dryText">
-      <text>
-        <tspan
-          className={ch.TEXT_VALUE}
-          fontSize={props.valueFontSize}
-          fill={props.valueFill}
-          filter={props.valueFilter}
-        />
-        <tspan
-          className={ch.TEXT_DECIMAL}
-          fontSize={props.decimalFontSize}
-          fill={props.decimalFill}
-          filter={props.decimalFilter}
-        />
-        <tspan
-          className={ch.TEXT_PERCENTAGE}
-          fontSize={props.percentFontSize}
-          fill={props.percentFill}
-          filter={props.percentFilter}
-        />
-      </text>
-    </g>
-    <g className="wetText" clipPath={ch.CLIP}>
-      <text>
-        <tspan
-          className={ch.TEXT_VALUE}
-          fontSize={props.valueFontSize}
-          fill={props.valueFill}
-          filter={props.valueFilter}
-        />
-        <tspan
-          className={ch.TEXT_DECIMAL}
-          fontSize={props.decimalFontSize}
-          fill={props.decimalFill}
-          filter={props.decimalFilter}
-        />
-        <tspan
-          className={ch.TEXT_PERCENTAGE}
-          fontSize={props.percentFontSize}
-          fill={props.percentFill}
-          filter={props.percentFilter}
-        />
-      </text>
-    </g>
+  <g>
+    <text
+      {...props.style}
+      dy={(props.valueFontSize * props.radius) / 4}
+      textAnchor="middle"
+      dx={(props.valueFontSize * props.radius) / 4}
+    >
+      <tspan
+        className={ch.TEXT_VALUE}
+        fontSize={props.valueFontSize * props.radius}
+      />
+      <tspan
+        className={ch.TEXT_DECIMAL}
+        fontSize={props.decimalFontSize * props.radius}
+      />
+      <tspan
+        className={ch.TEXT_PERCENTAGE}
+        fontSize={props.postfixFontSize * props.radius}
+      />
+    </text>
+    <text
+      {...props.style}
+      className={ch.TEXT_LEGEND}
+      dy={(props.valueFontSize * props.radius) / 2}
+      fontSize={props.radius * 0.1}
+      textAnchor="middle"
+    >{props.legend}</text>
   </g>
 );
 

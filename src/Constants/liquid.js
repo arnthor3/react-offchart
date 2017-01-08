@@ -1,21 +1,26 @@
 import { CLASS_PREFIX } from './offcharts';
-
+import unique from '../Helpers/uniqueId';
 /*
   ClassNames for liquid
 */
 export const MAIN_NAME = `${CLASS_PREFIX}liquid`;
 export const LIQUID_PREFIX = `${MAIN_NAME}-`;
-export const CLIP = `${LIQUID_PREFIX}clip`;
+export const CLIP = `${LIQUID_PREFIX}clip-${unique()}`;
 export const MAIN = `${LIQUID_PREFIX}-main`;
 export const OUTER = `${LIQUID_PREFIX}-outer`;
 export const INNER = `${LIQUID_PREFIX}-inner`;
 export const TEXT = `${LIQUID_PREFIX}text`;
-export const TEXT_VALUE = `${LIQUID_PREFIX}text-value`;
-export const TEXT_PERCENTAGE = `${LIQUID_PREFIX}text-percentage`;
-export const TEXT_DECIMAL = `${LIQUID_PREFIX}text-decimal`;
-
+export const TEXT_VALUE = `${TEXT}-value`;
+export const TEXT_PERCENTAGE = `${TEXT}-percentage`;
+export const TEXT_DECIMAL = `${TEXT}-decimal`;
+export const TEXT_LEGEND = `${TEXT}-legend`;
 /*
   Error messages
 */
 export const INNER_BIGGER_THAN_OUTER = 'The Innerboundaries props is bigger than outerboundaries';
 export const OUTER_BIGGER_THAN_ONE = 'The Outerboundaries props is bigger than 1';
+
+/*
+  Sampling
+*/
+export const SAMPLING = 60;

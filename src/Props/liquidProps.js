@@ -1,5 +1,12 @@
 import { PropTypes } from 'react';
 
+const FontStyle = {
+  size: PropTypes.number,
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+  filter: PropTypes.string,
+};
+
 export const TextProps = {
   valueFontSize: PropTypes.number,
   percentageFontSize: PropTypes.number,
