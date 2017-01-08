@@ -1,16 +1,11 @@
 import { PropTypes } from 'react';
+import { TextProps } from './offchartProps';
 
-const FontStyle = {
-  size: PropTypes.number,
-  fill: PropTypes.string,
-  stroke: PropTypes.string,
-  filter: PropTypes.string,
-};
-
-export const TextProps = {
-  valueFontSize: PropTypes.number,
-  percentageFontSize: PropTypes.number,
-  decimalFontSize: PropTypes.number,
+export const LiquidTextProps = {
+  valueText: PropTypes.shape(TextProps),
+  percentageText: PropTypes.shape(TextProps),
+  decimalText: PropTypes.shape(TextProps),
+  legendText: PropTypes.shape(TextProps),
 };
 
 export const ShapeProps = {

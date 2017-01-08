@@ -14,14 +14,14 @@ const LL = () => (
         responsive
         dryStyle={{
           fill: 'red',
-          stroke: 'pink',
         }}
         wetStyle={{
           fill: 'white',
-          stroke: 'red',
         }}
         legend="Percentage of Completed Tasks"
         value={(Math.random() * 50) + 45}
+        amplitude={4}
+        animationWavesTime={2500}
       />
     </div>
     <div style={style}>
@@ -29,14 +29,14 @@ const LL = () => (
         responsive
         dryStyle={{
           fill: 'red',
-          stroke: 'pink',
         }}
         wetStyle={{
           fill: 'white',
-          stroke: 'red',
         }}
         legend="Percentage of Completed Tasks"
-        value={Math.random() * 75}
+        value={Math.random() * 100}
+        waveScaleLimit
+        amplitude={0}
       />
     </div>
   </span>

@@ -16,6 +16,9 @@ const LiquidChart = (props) => (
     <Liquid
       outerBound={0.95}
       innerBound={0.85}
+      amplitude={props.amplitude}
+      frequency={props.frequency}
+      waveScaleLimit={props.waveScaleLimit}
     >
       <Shape
         type={props.type}

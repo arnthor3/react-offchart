@@ -5,13 +5,12 @@ import unique from '../Helpers/uniqueId';
 */
 export const MAIN_NAME = `${CLASS_PREFIX}liquid`;
 export const LIQUID_PREFIX = `${MAIN_NAME}-`;
-export const CLIP = `${LIQUID_PREFIX}clip-${unique()}`;
 export const MAIN = `${LIQUID_PREFIX}-main`;
 export const OUTER = `${LIQUID_PREFIX}-outer`;
 export const INNER = `${LIQUID_PREFIX}-inner`;
 export const TEXT = `${LIQUID_PREFIX}text`;
 export const TEXT_VALUE = `${TEXT}-value`;
-export const TEXT_PERCENTAGE = `${TEXT}-percentage`;
+export const TEXT_POSTFIX = `${TEXT}-postfix`;
 export const TEXT_DECIMAL = `${TEXT}-decimal`;
 export const TEXT_LEGEND = `${TEXT}-legend`;
 /*

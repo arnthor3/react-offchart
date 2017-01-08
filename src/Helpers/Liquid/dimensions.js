@@ -25,18 +25,23 @@ export const getInnerShape = ({ innerBound, radius, liquidMargin = 0.0025 }) => 
     .endAngle(Math.PI * 2)
 );
 
-export const getWave = ({ width, height, innerBound, liquidMargin = 0.0025, value }) => {
+export const getScales = ({ height, width, innerBound, liquidMargin }) => {
   const h = ((height * (innerBound - liquidMargin)) / 2);
   const w = ((width * (innerBound - liquidMargin)) / 2);
   const x = scaleLinear().range([-w, w]).domain([0, SAMPLING]);
   const y = scaleLinear().range([h, -h]).domain([0, 100]);
-  const sine = (a, i, f) => a * (Math.sin((((Math.PI * 2) / SAMPLING) * i * f) + Math.PI));
-  return (
+  return { w, h, x, y };
+};
+
+
+export const getWaveArea = (props) => {
+  const { x, y, w, h } = getScales(props);
+  const waveArea = (
     area()
       .x((d, i) => x(i))
-      .y0((d, i) => y(sine(4, i, 4) + value))
-      .y1(d => height / 2)
+      .y1(d => h)
   );
+  return { waveArea, x, y, w, h };
 };
 
 export const getWaveScaleLimit = ({ waveScaleLimit, amplitude }) => {
@@ -49,9 +54,23 @@ export const getWaveScaleLimit = ({ waveScaleLimit, amplitude }) => {
   }
   return (
     scaleLinear()
-      .range([this.props.amplitude])
+      .range([amplitude])
       .domain([0, 100])
   );
 };
+
+export const getWave = (props) => {
+  const { x, y, h, w } = getScales(props);
+  const sine = (a, i, f) => a * (Math.sin((((Math.PI * 2) / SAMPLING) * i * f) + Math.PI));
+  const waveScale = getWaveScaleLimit(props);
+  return (
+    area()
+      .x((d, i) => x(i))
+      .y0((d, i) => y(sine(waveScale(props.value), i, 4) + props.value))
+      .y1(d => h)
+  );
+};
+
+
 
 

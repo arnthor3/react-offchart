@@ -4,12 +4,7 @@ import { LiquidTextProps } from '../../Props/liquidProps';
 
 const LiquidText = (props) => (
   <g>
-    <text
-      {...props.style}
-      dy={(props.valueFontSize * props.radius) / 4}
-      textAnchor="middle"
-      dx={(props.valueFontSize * props.radius) / 4}
-    >
+    <text {...props.style} textAnchor="middle">
       <tspan
         className={ch.TEXT_VALUE}
         fontSize={props.valueFontSize * props.radius}
@@ -19,14 +14,14 @@ const LiquidText = (props) => (
         fontSize={props.decimalFontSize * props.radius}
       />
       <tspan
-        className={ch.TEXT_PERCENTAGE}
+        className={ch.TEXT_POSTFIX}
         fontSize={props.postfixFontSize * props.radius}
-      />
+      >{props.postfix}</tspan>
     </text>
     <text
       {...props.style}
       className={ch.TEXT_LEGEND}
-      dy={(props.valueFontSize * props.radius) / 2}
+      dy={props.radius * 0.15}
       fontSize={props.radius * 0.1}
       textAnchor="middle"
     >{props.legend}</text>
