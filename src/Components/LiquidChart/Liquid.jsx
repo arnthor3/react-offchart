@@ -70,25 +70,26 @@ export default class Liquid extends Component {
 
     const el = container.select('clipPath').select('path');
 
-    const { waveArea, x, y, w, h } = dh.getWaveArea(this.props);
-    const area1 = are
-    const animatie = () => {
+    const waveScale = dh.getWaveScaleLimit(this.props);
+
+    const { waveOne, waveTwo } = dh.getWaves(this.props);
+    const anime = () => {
       el
       .transition()
       .ease(ease.easeSin)
-      .duration(2500)
-      .attr('d', w2(arr))
+      .duration(1500)
+      .attr('d', waveOne(arr))
       .transition()
       .ease(ease.easeSin)
-      .duration(2500)
-      .attr('d', w1(arr))
+      .duration(1500)
+      .attr('d', waveTwo(arr))
       .on('end', () => {
-        console.log('werwer');
-        animatie();
+        anime();
       });
     };
-    animatie();
+    anime();
   }
+
   animate() {
     const arr = new Array(ch.SAMPLING);
 
@@ -107,7 +108,7 @@ export default class Liquid extends Component {
     const time = scaleLinear().range([0, 1]).domain([0, this.props.animationTime]);
 
     const interpolateValue = interpolate(el.node().old || 0, this.props.value);
-    const sine = (a, i, f) => a * Math.sin(((Math.PI * 2) / ch.SAMPLING) * i * 4);
+    const sine = (a, i, f) => a * Math.sin(((Math.PI * 2) / ch.SAMPLING) * i * f);
     const animationTimer = timer((t) => {
       const animate = animationEase(time(t));
       const value = interpolateValue(animate);

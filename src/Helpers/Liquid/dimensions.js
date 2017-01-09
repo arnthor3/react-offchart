@@ -71,6 +71,24 @@ export const getWave = (props) => {
   );
 };
 
-
-
-
+export const getWaves = (props) => {
+  const { x, y, h, w } = getScales(props);
+  const sine = (a, i, f) => a * Math.sin(((Math.PI * 2) / SAMPLING) * i * f * 0.4);
+  const sine2 = (a, i, f) => a * Math.sin(((Math.PI * 2) / SAMPLING) * i * f * -0.4);
+  const waveScale = getWaveScaleLimit(props);
+  const waveOne = (
+    area()
+      .x((d, i) => x(i))
+      .y0((d, i) => y(sine(waveScale(props.value), i, props.frequency) + props.value))
+      .y1(d => h)
+  );
+  const waveTwo = (
+    area()
+      .x((d, i) => x(i))
+      .y0((d, i) => y(sine2(waveScale(props.value), i, props.frequency) + props.value))
+      .y1(d => h)
+  );
+  return {
+    waveOne, waveTwo,
+  };
+};
