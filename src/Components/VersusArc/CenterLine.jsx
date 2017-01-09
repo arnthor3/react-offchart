@@ -1,15 +1,22 @@
-import React from 'react';
-import ch from '../../Helpers/VersusArc/constants';
+import React, { PropTypes } from 'react';
+import * as ch from '../../Constants/versusArc';
 
-export default props => (
+const centerLine = props => (
   <g>
     <path
       strokeWidth={props.strokeWidth}
       strokeDasharray={props.strokeDasharray}
       stroke={props.stroke}
-      fill={props.fill}
       className={ch.CENTER_LINE}
     />
   </g>
 );
+
+centerLine.propTypes = {
+  strokeWidth: PropTypes.number,
+  strokeDasharray: PropTypes.number,
+  stroke: PropTypes.string,
+};
+
+export default centerLine;
 

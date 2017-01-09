@@ -24,7 +24,9 @@ const VersusArcChart = props => (
     >
       <VersusArc />
       <CenterLine />
-      <Legend />
+      <ReactIf>
+        <Legend />
+      </ReactIf>
     </ArcContianer>
     <ReactIf
       condition={props.showToolTip}

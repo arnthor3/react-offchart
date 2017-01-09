@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './examples/Liquid.jsx',
+  entry: './examples/VersusArc.jsx',
   output: {
     path: __dirname,
     filename: './index.js',

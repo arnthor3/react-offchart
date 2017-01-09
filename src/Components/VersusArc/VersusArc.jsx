@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import * as ch from '../../Helpers/VersusArc/constants';
+import * as ch from '../../Constants/versusArc';
 
-const VersusArc = () => {
+const VersusArc = (props) => {
   const c = 34;
   return (
-    <g transform={`translate(${props.cx},${props.cy})`} >
+    <g>
       <path
-        d={props.chartBackground()}
+        d={props.backgroundArc()}
         fill={props.background.fill}
         stroke={props.background.stroke}
         className={ch.BACKGROUND_ARC}
@@ -23,4 +23,18 @@ const VersusArc = () => {
       />
     </g>
   );
-}
+};
+
+const fillAndStroke = PropTypes.shape({
+  fill: PropTypes.string,
+  stroke: PropTypes.string,
+});
+
+VersusArc.propTypes = {
+  backgroundArc: PropTypes.func,
+  background: fillAndStroke,
+  left: fillAndStroke,
+  right: fillAndStroke,
+};
+
+export default VersusArc;
