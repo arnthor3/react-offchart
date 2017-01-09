@@ -30,6 +30,21 @@ const fillAndStroke = PropTypes.shape({
   stroke: PropTypes.string,
 });
 
+VersusArc.defaultProps = {
+  background: {
+    fill: '#ddd',
+    stroke: '#ccc',
+  },
+  left: {
+    fill: '#567',
+    stroke: '',
+  },
+  right: {
+    fill: '#765',
+    stroke: '',
+  },
+};
+
 VersusArc.propTypes = {
   backgroundArc: PropTypes.func,
   background: fillAndStroke,

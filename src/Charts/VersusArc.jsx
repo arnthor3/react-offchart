@@ -21,6 +21,8 @@ const VersusArcChart = props => (
       animationEase={props.animationEase}
       hoverAnimationEase={props.hoverAnimationEase}
       hoverAnimationTime={props.hoverAnimationTime}
+      innerRadius={0.9}
+      outerRadius={1.5}
     >
       <VersusArc />
       <CenterLine />

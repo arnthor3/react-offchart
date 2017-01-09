@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import Liquid from '../src/Charts/Liquid';
 
 const style = {
-  width: '600px',
-  height: '500px',
+  width: '800px',
+  height: '400px',
 };
 
 class TestLiquid extends Component {
