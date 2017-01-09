@@ -61,12 +61,12 @@ const VersusArcChart = props => (
   </Chart>
 );
 
-export const dataShape = PropTypes.shape({
+export const dataShape = PropTypes.array(PropTypes.shape({
   value: PropTypes.number,
   label: PropTypes.string,
   fill: PropTypes.string,
   stroke: PropTypes.string,
-});
+}));
 
 VersusArcChart.propTypes = {
   responsive: PropTypes.bool,

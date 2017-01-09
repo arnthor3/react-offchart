@@ -6,11 +6,14 @@ import { ease } from 'd3-ease';
 import * as dh from '../../Helpers/VersusArcs/dimensions';
 import cloneChildren from '../../Helpers/cloneChildren';
 import * as ch from '../../Constants/versusArc';
+import { dataShape } from '../../Props/versusArcProps';
 
 export default class ArcContainer extends Component {
   static propTypes = {
     animationTime: PropTypes.number,
     animationEase: PropTypes.string,
+    hoverAnimationEase: PropTypes.string,
+    hoverAnimationTime: PropTypes.string,
   }
 
   componentDidMount() {
@@ -35,6 +38,16 @@ export default class ArcContainer extends Component {
       return 2000;
     }
     return animationTime;
+  }
+
+  shouldHover() {
+    return (
+      this.props.hoverAnimationEase || this.props.hoverAnimationTime
+    );
+  }
+
+  appendHover() {
+
   }
 
   animate() {
@@ -65,6 +78,9 @@ export default class ArcContainer extends Component {
     const r = rightDim.arc.endAngle(rightDim.scale(this.props.values[1].value));
     left.attr('d', l);
     right.attr('d', r);
+    if (this.shouldAppendHover()) {
+      appendHover();
+    }
   }
 
   renderChart() {
