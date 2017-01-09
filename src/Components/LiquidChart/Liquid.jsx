@@ -20,7 +20,9 @@ export default class Liquid extends Component {
     liquidMargin: 0.005,
     waveScaleLimit: true,
     frequency: 4,
-    animationWavesTime: 2000,
+    deliminator: '.',
+    postfix: '',
+
   }
   constructor(props) {
     super();
@@ -29,6 +31,7 @@ export default class Liquid extends Component {
     } else if (props.outerBoundaries > 1) {
       throw new Error(ch.OUTER_BIGGER_THAN_ONE);
     }
+    this.iter = 0;
   }
 
   componentDidMount() {
@@ -63,25 +66,20 @@ export default class Liquid extends Component {
 
   }
   animateWaves() {
-    console.log('herellll');
     const arr = new Array(ch.SAMPLING);
-
     const container = select(this.container);
-
     const el = container.select('clipPath').select('path');
-
     const waveScale = dh.getWaveScaleLimit(this.props);
-
     const { waveOne, waveTwo } = dh.getWaves(this.props);
     const anime = () => {
       el
       .transition()
       .ease(ease.easeSin)
-      .duration(1500)
+      .duration(this.props.animationWavesTime)
       .attr('d', waveOne(arr))
       .transition()
       .ease(ease.easeSin)
-      .duration(1500)
+      .duration(this.props.animationWavesTime)
       .attr('d', waveTwo(arr))
       .on('end', () => {
         anime();
@@ -106,9 +104,18 @@ export default class Liquid extends Component {
     const { waveArea, x, y, w, h } = dh.getWaveArea(this.props);
 
     const time = scaleLinear().range([0, 1]).domain([0, this.props.animationTime]);
-
+    this.iter += 1;
+    const old = el.node().old || 0;
     const interpolateValue = interpolate(el.node().old || 0, this.props.value);
     const sine = (a, i, f) => a * Math.sin(((Math.PI * 2) / ch.SAMPLING) * i * f);
+    el.transition();
+    if (this.iter > 2) {
+      waveArea.y0((d, i) => y(sine(waveScale(old), i, this.props.frequency) + old));
+      el.transition()
+        .duration(1000)
+        .attr('d', waveArea(arr));
+      return;
+    }
     const animationTimer = timer((t) => {
       const animate = animationEase(time(t));
       const value = interpolateValue(animate);

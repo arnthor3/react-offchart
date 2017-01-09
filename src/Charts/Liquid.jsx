@@ -19,6 +19,7 @@ const LiquidChart = (props) => (
       amplitude={props.amplitude}
       frequency={props.frequency}
       waveScaleLimit={props.waveScaleLimit}
+      animationWavesTime={props.animationWavesTime}
     >
       <Shape
         type={props.type}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Liquid from '../src/Charts/Liquid';
+import VersusArc from '../src/Charts/VersusArc';
 
 const style = {
   width: '600px',
@@ -30,7 +30,7 @@ class TestLiquid extends Component {
     return(
       <span>
         <div style={style}>
-          <Liquid
+          <VersusArc
             responsive
             dryStyle={{
               fill: 'red',
@@ -46,7 +46,7 @@ class TestLiquid extends Component {
         </div>
         <button onClick={() => { this.onClickOne(); }}>RANDOM</button>
         <div style={style}>
-          <Liquid
+          <VersusArc
             responsive
             dryStyle={{
               fill: 'red',

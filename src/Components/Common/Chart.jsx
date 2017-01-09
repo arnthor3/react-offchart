@@ -3,16 +3,18 @@ import throttle from 'lodash.throttle';
 import ReactIf from './ReactIf';
 import cloneComponents from '../../Helpers/cloneChildren';
 
-export default class Chart extends Component {
-  static propTypes = {
-    // enables listen to window width change and rerenders the chart
-    // on resize
-    responsive: PropTypes.bool,
-    // if not responsive then user can set width and height
-    width: PropTypes.number,
-    height: PropTypes.number,
-  };
+export const chartProps = {
+  // enables listen to window width change and rerenders the chart
+  // on resize
+  responsive: PropTypes.bool,
+  // if not responsive then user can set width and height
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
 
+
+export default class Chart extends Component {
+  static propTypes = chartProps;
   constructor(props) {
     super(props);
     this.state = {
